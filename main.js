@@ -17,21 +17,17 @@
 
   function createParticles() {
     particles = [];
-    const count = Math.floor((W * H) / 8000); // 画面サイズに比例
+    const count = Math.floor((W * H) / 8000);
     for (let i = 0; i < count; i++) {
       const size = randomBetween(0.4, 2.2);
       particles.push({
-        x:     randomBetween(0, W),
-        y:     randomBetween(0, H),
-        size,
-        baseSize: size,
+        x: randomBetween(0, W), y: randomBetween(0, H),
+        size, baseSize: size,
         speedX: randomBetween(-0.12, 0.12),
         speedY: randomBetween(-0.18, -0.04),
         opacity: randomBetween(0.1, 0.7),
-        // 点滅周期をランダムにずらす
         blinkOffset: randomBetween(0, Math.PI * 2),
         blinkSpeed:  randomBetween(0.005, 0.018),
-        // 色：白 or 薄い青
         hue: Math.random() < 0.3 ? 200 : 0,
         sat: Math.random() < 0.3 ? 60  : 0,
       });
@@ -42,24 +38,16 @@
   function draw() {
     ctx.clearRect(0, 0, W, H);
     frame++;
-
     for (const p of particles) {
-      // 点滅（サインカーブで opacity を揺らす）
       const blink = 0.5 + 0.5 * Math.sin(frame * p.blinkSpeed + p.blinkOffset);
       const alpha = p.opacity * blink;
       const size  = p.baseSize * (0.8 + 0.4 * blink);
-
       ctx.beginPath();
       ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
-
-      if (p.hue === 0) {
-        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
-      } else {
-        ctx.fillStyle = `hsla(${p.hue},${p.sat}%,80%,${alpha})`;
-      }
+      ctx.fillStyle = p.hue === 0
+        ? `rgba(255,255,255,${alpha})`
+        : `hsla(${p.hue},${p.sat}%,80%,${alpha})`;
       ctx.fill();
-
-      // 少し大きい粒にグロウ
       if (p.baseSize > 1.5) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, size * 2.5, 0, Math.PI * 2);
@@ -69,17 +57,12 @@
         ctx.fillStyle = grad;
         ctx.fill();
       }
-
-      // 移動
       p.x += p.speedX;
       p.y += p.speedY;
-
-      // 画面外に出たら反対側から再登場
       if (p.y < -5)  p.y = H + 5;
       if (p.x < -5)  p.x = W + 5;
       if (p.x > W+5) p.x = -5;
     }
-
     requestAnimationFrame(draw);
   }
 
@@ -90,33 +73,82 @@
 })();
 
 
-/* ── 2. RIPPLE (波紋エフェクト) ── */
+/* ── 2a. RIPPLE — ボタン ── */
 document.querySelectorAll('.btn').forEach(btn => {
   btn.addEventListener('click', function (e) {
-    // すでにあるリップルを削除
     const old = this.querySelector('.ripple');
     if (old) old.remove();
-
-    const rect   = this.getBoundingClientRect();
-    const size   = Math.max(rect.width, rect.height) * 2;
-    const x      = e.clientX - rect.left - size / 2;
-    const y      = e.clientY - rect.top  - size / 2;
-
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2;
+    const x    = e.clientX - rect.left - size / 2;
+    const y    = e.clientY - rect.top  - size / 2;
     const ripple = document.createElement('span');
     ripple.classList.add('ripple');
-    ripple.style.cssText = `
-      width:${size}px; height:${size}px;
-      left:${x}px; top:${y}px;
-    `;
+    ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
     this.appendChild(ripple);
-
-    // アニメーション終了後に削除
     ripple.addEventListener('animationend', () => ripple.remove());
   });
 });
 
 
-/* ── 3. SCROLL REVEAL ── */
+/* ── 2b. CLICK RIPPLE — 画面全体 ── */
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.btn')) return; // ボタンは 2a に任せる
+
+  const el = document.createElement('div');
+  el.classList.add('click-ripple');
+  el.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;`;
+  document.body.appendChild(el);
+  el.addEventListener('animationend', () => el.remove());
+});
+
+
+/* ── 3. CURSOR SPARKLE TRAIL ── */
+(function () {
+  const COLORS = [
+    'rgba(126,200,227,',
+    'rgba(255,255,255,',
+    'rgba(74,158,206,',
+    'rgba(200,220,255,',
+  ];
+
+  let lastX = -999, lastY = -999;
+
+  function spawnSparkle(x, y) {
+    const el    = document.createElement('div');
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    const size  = 3 + Math.random() * 5;
+    const angle = Math.random() * 360;
+    const dist  = 8 + Math.random() * 18;
+    const dx    = Math.cos(angle * Math.PI / 180) * dist;
+    const dy    = Math.sin(angle * Math.PI / 180) * dist;
+
+    el.classList.add('cursor-sparkle');
+    el.style.cssText = `
+      left:${x}px; top:${y}px;
+      width:${size}px; height:${size}px;
+      background:${color}0.9);
+      --dx:${dx}px; --dy:${dy}px;
+      box-shadow:0 0 ${size * 2}px ${color}0.6);
+    `;
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+
+  document.addEventListener('mousemove', (e) => {
+    const dx   = e.clientX - lastX;
+    const dy   = e.clientY - lastY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 6) return;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    const count = Math.min(Math.floor(dist / 6), 3);
+    for (let i = 0; i < count; i++) spawnSparkle(e.clientX, e.clientY);
+  });
+})();
+
+
+/* ── 4. SCROLL REVEAL ── */
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
