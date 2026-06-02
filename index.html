@@ -17,14 +17,14 @@
 }
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--fg);font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:1.8;font-size:14px;overflow-x:hidden;}
-
+ 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(4,8,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(74,158,206,0.1);}
 .nav-logo{font-family:'Josefin Sans',sans-serif;font-weight:100;font-size:13px;letter-spacing:.35em;text-transform:uppercase;color:var(--accent2);text-decoration:none;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-family:'Josefin Sans',sans-serif;font-weight:300;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg2);text-decoration:none;transition:color .3s;}
 .nav-links a:hover{color:var(--accent2);}
-
+ 
 /* HERO */
 .hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
@@ -43,13 +43,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content
 .btn-primary:hover{background:var(--accent);color:var(--bg);box-shadow:0 0 20px var(--glow);}
 .btn-secondary{border-color:var(--fg3);color:var(--fg2);}
 .btn-secondary:hover{border-color:var(--fg2);color:var(--fg);}
-
+ 
 /* SECTION */
 section{padding:6rem 3rem;border-top:1px solid var(--border);}
 .sec-label{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;display:flex;align-items:center;gap:.8rem;}
 .sec-label::before{content:'';display:inline-block;width:18px;height:1px;background:var(--accent);}
 .sec-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:1.8rem;color:var(--fg);margin-bottom:3rem;}
-
+ 
 /* VIDEOS */
 .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
 .video-card{background:var(--bg2);border:1px solid var(--border);overflow:hidden;transition:border-color .3s,box-shadow .3s;}
@@ -58,18 +58,18 @@ section{padding:6rem 3rem;border-top:1px solid var(--border);}
 .video-info{padding:1rem 1.2rem;}
 .video-title{font-size:13px;color:var(--fg);margin-bottom:.3rem;line-height:1.5;}
 .video-meta{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:.15em;color:var(--fg3);text-transform:uppercase;}
-
+ 
 /* PLAYER */
 .player-box{background:var(--bg2);border:1px solid var(--border);padding:2rem;}
 .player-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;}
 .spotify-icon{width:22px;height:22px;color:#1db954;}
 .player-lbl{font-family:'Josefin Sans',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg2);}
 .spotify-embed{width:100%;border:none;}
-
+ 
 /* ARTIST */
 .artist-grid{display:grid;grid-template-columns:320px 1fr;gap:5rem;align-items:start;}
 .artist-img-wrap{position:relative;display:flex;flex-direction:column;align-items:center;}
-
+ 
 /* 丸い窓で画像を切り取る */
 .artist-img-circle{
   width:280px;height:280px;
@@ -86,7 +86,7 @@ section{padding:6rem 3rem;border-top:1px solid var(--border);}
   display:block;
   filter:brightness(.92) contrast(1.05);
 }
-
+ 
 /* 円の外側に薄いリング装飾 */
 .artist-ring{
   position:absolute;
@@ -102,12 +102,12 @@ section{padding:6rem 3rem;border-top:1px solid var(--border);}
   border:1px solid rgba(74,158,206,0.05);
   pointer-events:none;
 }
-
+ 
 .artist-name{font-family:'Josefin Sans',sans-serif;font-weight:100;font-size:2.2rem;letter-spacing:.2em;color:var(--fg);margin-bottom:.3rem;}
 .artist-role{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--accent);margin-bottom:2.5rem;}
 .artist-bio{font-size:13px;color:var(--fg2);line-height:2.2;}
 .artist-bio p+p{margin-top:1.2rem;}
-
+ 
 /* TOPIC */
 .topic-list{list-style:none;border-top:1px solid var(--border);}
 .topic-item{display:grid;grid-template-columns:2.5rem 1fr auto;align-items:center;gap:1.5rem;padding:1.3rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all .25s;text-decoration:none;color:inherit;}
@@ -121,7 +121,7 @@ section{padding:6rem 3rem;border-top:1px solid var(--border);}
 .badge.pop{border-color:rgba(126,200,227,.3);color:var(--accent2);}
 .badge.new{border-color:rgba(200,180,80,.4);color:#c8b864;}
 .badge.info{border-color:rgba(160,200,160,.3);color:#90c890;}
-
+ 
 /* NOTE */
 .note-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
 .note-card{border:1px solid var(--border);padding:2rem;text-decoration:none;color:inherit;transition:border-color .3s,background .3s;display:block;}
@@ -130,7 +130,7 @@ section{padding:6rem 3rem;border-top:1px solid var(--border);}
 .note-title{font-family:'Noto Serif JP',serif;font-weight:300;font-size:.95rem;line-height:1.8;color:var(--fg);margin-bottom:1rem;}
 .note-excerpt{font-size:12px;color:var(--fg3);line-height:1.8;}
 .note-arrow{margin-top:1.5rem;font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;}
-
+ 
 /* FOOTER */
 footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem;}
 .footer-logo{font-family:'Josefin Sans',sans-serif;font-weight:100;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--fg3);}
@@ -138,12 +138,12 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
 .footer-links a{font-family:'Josefin Sans',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg3);text-decoration:none;transition:color .3s;}
 .footer-links a:hover{color:var(--accent2);}
 .footer-copy{font-size:11px;color:var(--fg3);text-align:right;}
-
+ 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-
+ 
 @media(max-width:900px){
   nav{padding:1rem 1.5rem;}
   .nav-links{display:none;}
@@ -158,7 +158,7 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Music Spot-koppe</a>
@@ -170,13 +170,13 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
     <li><a href="#topic">Topic</a></li>
   </ul>
 </nav>
-
+ 
 <!-- HERO -->
 <section class="hero" style="border-top:none;padding:0;">
   <img src="hero-bg.png" alt="Music Spot-koppe" class="hero-img">
   <div class="hero-overlay"></div>
 </section>
-
+ 
 <!-- INTRO -->
 <section id="intro" style="padding:4rem 3rem;">
   <h1 style="font-family:'Josefin Sans',sans-serif;font-weight:100;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:.08em;color:var(--fg);line-height:1.1;margin-bottom:.6rem;">Music <span style="color:var(--accent);">Spot</span></h1>
@@ -192,7 +192,7 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
     <a href="https://www.tunecore.co.jp/artists?id=1052902" target="_blank" class="btn btn-secondary">Listen Now</a>
   </div>
 </section>
-
+ 
 <!-- ARTIST -->
 <section id="about">
   <p class="sec-label reveal">Artist</p>
@@ -210,17 +210,16 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
       <div class="artist-name reveal">koppe</div>
       <p class="artist-role reveal">Music Producer</p>
       <div class="artist-bio reveal">
-        <p>音楽には、二つの層がある。</p>
-        <p>ひとつは、哲学的・内省的な深みを持つコア楽曲。もうひとつは、軽やかなJ-popの温度感を持つ楽曲。</p>
-        <p>どちらも同じ根を持つ。それは、「自分の内側で鳴り続けているノイズを、音楽という形に変換すること」だ。</p>
-        <p>歌詞には、熱力学、エラーコード、エントロピー——理系的・技術的な比喩が混じり込む。だがそれは知識の誇示ではない。言葉では整理しきれない感情を、概念の衣をまとわせて届けるための、koppe 独自の表現言語だ。</p>
-        <p>光、ノイズ、加速、境界線、特異点。</p>
-        <p>これらの言葉が何度も楽曲に現れるとき、それはkoppeが今もその「境界線」の上で音楽を作り続けている証拠だ。</p>
+        <p>今日の私は、今日死ぬ。</p>
+        <p>明日目が覚めた時、今日の感性も、今日見えていた世界の色も、静かに消えていく。だから曲を作る——今日死んでいく自分を葬送するために。</p>
+        <p>頭の中では常に複数の世界が重なり、それぞれが主張し合いながら混濁している。その状態を私はノイズと呼ぶ。曲を作ることは、そのノイズを整理することではない。変換だ。今この瞬間の世界観と感情を、そのままの解像度で音に置き換えていく。</p>
+        <p>言葉は便利だが、言葉にした瞬間に型の中に閉じ込められてしまう。音には余白がある。その余白に、言葉では届かなかった場所まで届く可能性がある。</p>
+        <p>あなたの感情が動いた瞬間、今日の私はより深くこの世界に存在したことになる。</p>
       </div>
     </div>
   </div>
 </section>
-
+ 
 <!-- MUSIC PLAYER -->
 <section id="music">
   <div class="player-box reveal">
@@ -236,7 +235,7 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
       loading="lazy"></iframe>
   </div>
 </section>
-
+ 
 <!-- VIDEOS -->
 <section id="videos">
   <p class="sec-label reveal">Videos</p>
@@ -274,7 +273,7 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
     </div>
   </div>
 </section>
-
+ 
 <!-- NOTE -->
 <section id="note">
   <p class="sec-label reveal">Note</p>
@@ -292,7 +291,7 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
     </a>
   </div>
 </section>
-
+ 
 <!-- TOPIC -->
 <section id="topic">
   <p class="sec-label reveal">Topic</p>
@@ -340,7 +339,7 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
     </li>
   </ul>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Music Spot-koppe</div>
@@ -351,7 +350,7 @@ footer{padding:3rem;border-top:1px solid var(--border);display:grid;grid-templat
   </ul>
   <p class="footer-copy">© 2025 Music Spot-koppe</p>
 </footer>
-
+ 
 <script>
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
